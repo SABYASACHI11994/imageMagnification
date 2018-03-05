@@ -1,0 +1,23 @@
+from PIL import Image
+import os, sys
+print("run")
+jpgfile = Image.open("picture.jpg")
+print(jpgfile)
+print("did")
+size = 150,100
+drive_path="F:/Learnings/image magnification/training/actual/data"
+filename_array=[]
+for root, dirs, files in os.walk(drive_path):
+    for filename in files:
+        # print(filename)
+        # filename=files[0]
+        filename_array.append(filename)
+        try:
+            im = Image.open(drive_path+"/"+filename)
+            im.thumbnail(size, Image.ANTIALIAS)
+            im.save("./150-100/"+filename+".jpeg", "JPEG")
+        except IOError:
+            print("cannot create thumbnail for '%s'")
+# print(len(filename_array))
+#
+# The program above changes the high resolution pic into lower resolution pic
